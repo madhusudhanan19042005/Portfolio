@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Me - My Portfolio</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and Background Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Updated background to black and dark blue gradient */
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #000020 75%, #000040 100%);
+            color: #fff; /* White text color to stand out on dark background */
+            line-height: 1.6;
+            margin: 0;
+            /* Added padding-top to ensure content is visible below fixed header */
+            padding-top: 100px; /* Adjust this value if your header height changes */
+            position: relative; /* Needed for pseudo-element positioning */
+            overflow-x: hidden; /* Prevents horizontal scroll from background animation */
+            min-height: 100vh; /* Ensure body takes full viewport height for background */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: fixed; /* Fixed to cover the entire viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 0, 30, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 0, 60, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 40, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(10, 10, 50, 0.3) 0%, transparent 50%);
+            animation: backgroundShift 12s ease-in-out infinite alternate;
+            z-index: -1; /* Ensures particles are behind main content */
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: translateX(-20px) translateY(-10px); }
+            100% { transform: translateX(20px) translateY(10px); }
+        }
+
+        /* Header Styling */
+        header {
+            /* Changed background to dark blue */
+            background-color: rgba(42, 82, 152, 0.8); /* Dark blue for header */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0; /* Adjusted padding for a more compact header */
+            /* Ensure header is fixed and on top */
+            position: fixed; /* Make header fixed so it stays at the top */
+            width: 100%; /* Ensure fixed header spans full width */
+            top: 0; /* Position at the very top */
+            left: 0; /* Position at the very left */
+            z-index: 100; /* Keep header on top of other content */
+            backdrop-filter: blur(10px); /* Add a subtle blur for depth */
+            transition: background-color 0.3s ease; /* Smooth transition on hover */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add shadow to header */
+        }
+
+        header:hover {
+            background-color: rgba(42, 82, 152, 0.95); /* More opaque on hover */
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Subtle text shadow */
+        }
+
+        /* Main Content Area */
+        main {
+            flex-grow: 1; /* Allows main content to take available space */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 10%;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Heading Styles */
+        h2 {
+            font-size: 2.5rem; /* Slightly larger for section titles */
+            color: #fff; /* White text for headings to contrast with the dark background */
+            margin-bottom: 30px; /* More space below headings */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Subtle text shadow */
+            /* Changed border-bottom color to dark blue */
+            border-bottom: 2px solid #2a5298; /* Underline effect */
+            padding-bottom: 10px;
+            display: inline-block; /* To make border-bottom apply only to text width */
+        }
+
+        /* Contact Section Specifics */
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+        }
+
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+        }
+
+        .contact-form-container h3 {
+            font-size: 2rem;
+            /* Changed color to dark blue */
+            color: #2a5298; /* Dark blue for contact form heading */
+            margin-bottom: 25px;
+            text-align: center;
+            /* Changed text-shadow to dark blue */
+            text-shadow: 0 0 8px rgba(42, 82, 152, 0.5);
+        }
+
+        .contact-form label {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: #f0f0f0;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.4); /* Darker input background */
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .contact-form input[type="text"]:focus,
+        .contact-form input[type="email"]:focus,
+        .contact-form input[type="tel"]:focus {
+            /* Changed border-color and box-shadow to dark blue */
+            border-color: #2a5298;
+            outline: none;
+            box-shadow: 0 0 15px rgba(42, 82, 152, 0.5);
+        }
+
+        .contact-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .contact-form button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 15px 25px;
+            /* Changed background-color to dark blue */
+            background-color: #2a5298;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-form button[type="submit"]:hover {
+            /* Changed background-color on hover to a darker blue */
+            background-color: #1e3c72;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .my-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            text-align: left;
+        }
+
+        .my-details h3 {
+            font-size: 1.8rem;
+            /* Changed color to dark blue */
+            color: #2a5298;
+            margin-bottom: 15px;
+            text-align: center;
+            /* Changed text-shadow to dark blue */
+            text-shadow: 0 0 8px rgba(42, 82, 152, 0.5);
+        }
+
+        /* Footer Styling */
+        footer {
+            /* Changed background to dark blue */
+            background-color: rgba(42, 82, 152, 0.8); /* Slightly transparent dark blue footer */
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1rem;
+            backdrop-filter: blur(10px); /* Add blur to footer */
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3); /* Shadow for footer */
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            /* No nav on this standalone page */
+            h2 {
+                font-size: 2rem;
+            }
+            .contact-form-container, .my-details {
+                padding: 30px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            /* Adjust padding-top for smaller screens if header height changes */
+            body {
+                padding-top: 80px; /* Slightly less padding for smaller headers */
+            }
+            main {
+                padding: 40px 5%;
+            }
+            header {
+                padding: 15px 0; /* Adjust header padding for smaller screens */
+            }
+            header h1 {
+                font-size: 2rem; /* Adjust header font size */
+            }
+            h2 {
+                font-size: 1.8rem; /* Adjust section heading font size */
+            }
+            .contact-content {
+                gap: 30px;
+            }
+            .contact-form-container h3 {
+                font-size: 1.8rem;
+            }
+            .my-details h3 {
+                font-size: 1.6rem;
+            }
+            .contact-form input, .contact-form button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .contact-form-container, .my-details {
+                padding: 20px;
+            }
+            .my-details p {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Contact Me</h1>
+    </header>
+
+    <main>
+        <h2>Get in Touch</h2>
+        <div class="contact-content">
+            <div class="contact-form-container">
+                <h3>Send Me a Message</h3>
+                <form class="contact-form">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+                    <label for="email">Email ID</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="e.g., 8925369784" pattern="[0-9]{10}" title="Please enter a 10-digit phone number" required>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+
+            <div class="my-details">
+                <h3>My Details</h3>
+                <p><strong>Address:</strong> Srirangam, Trichy</p>
+                <p><strong>Pincode:</strong> 259028</p>
+                <p><strong>Phone:</strong> 8925369784</p>
+                <p><strong>Email:</strong> madhusudhanan4321@gmail.com</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Portfolio. All rights reserved.</p>
+    </footer>
+</body>
+</html>

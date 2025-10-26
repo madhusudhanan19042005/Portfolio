@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Services & Skills - Portfolio</title>
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #000020 75%, #000040 100%);
+            color: #fff; 
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 100px; 
+            position: relative; 
+            overflow-x: hidden; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        body::before {
+            content: '';
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(0, 0, 30, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 0, 60, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 0, 40, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 60% 40%, rgba(10, 10, 50, 0.3) 0%, transparent 50%);
+            animation: backgroundShift 12s ease-in-out infinite alternate;
+            z-index: -1; 
+        }
+
+        @keyframes backgroundShift {
+            0% { transform: translateX(-20px) translateY(-10px); }
+            100% { transform: translateX(20px) translateY(10px); }
+        }
+        header {
+            background-color: rgba(42, 82, 152, 0.8); 
+            color: #fff;
+            text-align: center;
+            padding: 20px 0; 
+            position: fixed; 
+            width: 100%; 
+            top: 0; 
+            left: 0; 
+            z-index: 100; 
+            backdrop-filter: blur(10px); 
+            transition: background-color 0.3s ease; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+        }
+
+        header:hover {
+            background-color: rgba(42, 82, 152, 0.95); 
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
+        }
+        main {
+            flex-grow: 1; 
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 50px 10%;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            font-size: 2.5rem;
+            color: #fff; 
+            margin-bottom: 30px; 
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); 
+            border-bottom: 2px solid #2a5298; 
+            padding-bottom: 10px;
+            display: inline-block; 
+            margin-top: 40px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; 
+            margin-top: 40px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .item-card {
+            padding: 30px; 
+            border-radius: 12px; 
+            transition: 0.3s ease-in-out;
+            text-align: left; 
+            display: flex; 
+            flex-direction: column;
+            justify-content: space-between; 
+        }
+
+        .item-card h3 {
+            font-size: 1.8rem;
+            color: #4fc3f7; 
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(79, 195, 247, 0.5); 
+        }
+
+        .item-card p {
+            color: #e0e0e0; 
+            font-size: 1.1rem; 
+            margin-bottom: 10px; 
+        }
+
+        .item-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 10px;
+        }
+
+        .item-card ul li {
+            color: #c0c0c0; 
+            font-size: 1rem;
+            margin-bottom: 5px;
+            position: relative;
+            padding-left: 20px; 
+        }
+
+        .item-card ul li::before {
+            content: '•'; 
+            color: #29b6f6;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .item-card:hover {
+            transform: translateY(-8px) scale(1.01); 
+            color: #4fc3f7; 
+        }
+        .item-card:hover h3 {
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.8);
+        }
+        .item-card:hover p, .item-card:hover ul li {
+            color: #fff;
+        }
+        .contact-section { 
+            width: 100%;
+            max-width: 900px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .contact { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s ease-in-out;
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px) scale(1.01);
+            color: #4fc3f7; 
+        }
+        .contact-item:hover h3 {
+            text-shadow: 0 0 15px rgba(79, 195, 247, 0.8);
+        }
+        .contact-item:hover p {
+            color: #fff;
+        }
+
+        .contact-item h3 {
+            font-size: 1.8rem;
+            color: #4fc3f7; 
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px rgba(79, 195, 247, 0.5);
+        }
+
+        .contact-item p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+        }
+
+        .contact-item a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: #2a5298; 
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .contact-item a:hover {
+            background-color: #1e3c72; 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        footer {
+            background-color: rgba(42, 82, 152, 0.8); 
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 1rem;
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3); 
+            margin-top: auto; 
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+            header h1 {
+                font-size: 2.5rem;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            .item-card h3, .contact-item h3 {
+                font-size: 1.6rem;
+            }
+            .item-card p, .item-card ul li, .contact-item p {
+                font-size: 1rem;
+            }
+            .grid-container, .contact {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                padding-top: 80px; 
+            }
+            main {
+                padding: 40px 5%;
+            }
+            header {
+                padding: 15px 0;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+                margin-top: 30px; 
+            }
+            .grid-container, .contact {
+                grid-template-columns: 1fr; 
+                gap: 20px;
+            }
+            .item-card, .contact-item {
+                padding: 25px;
+            }
+            .item-card h3, .contact-item h3 {
+                font-size: 1.4rem;
+            }
+            .item-card p, .item-card ul li, .contact-item p {
+                font-size: 0.95rem;
+            }
+            .contact-item a {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .item-card, .contact-item {
+                padding: 20px;
+            }
+            .item-card h3, .contact-item h3 {
+                font-size: 1.2rem;
+            }
+            .item-card p, .item-card ul li, .contact-item p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Services & Skills</h1>
+    </header>
+
+    <main>
+        <!-- Services Section -->
+        <section id="services">
+            <h2>Services</h2>
+            <div class="grid-container">
+                <div class="item-card">
+                    <h3>Website Creation</h3>
+                    <p>Build modern, responsive websites that look great on any device.</p>
+                </div>
+                <div class="item-card">
+                    <h3>Design</h3>
+                    <p>Creative designs for websites, apps, and logos to capture your brand essence.</p>
+                </div>
+                <div class="item-card">
+                    <h3>Mini Projects (AI/ML)</h3>
+                    <p>Develop AI/ML based projects tailored to your specific needs.</p>
+                </div>
+                <div class="item-card">
+                    <h3>Volunteership</h3>
+                    <p>Organized Linker Event to Junior - Department level</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+        <p>&copy; 2025 My Services. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
